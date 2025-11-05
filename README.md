@@ -7,6 +7,7 @@ No backend is required: tasks are served from an in‑memory data source in `src
 ---
 
 ### Features
+
 - **Tasks list**: load tasks, mark as done/todo
 - **Filters UI**: tabs for All/Today/Week/Completed (visual only for now)
 - **Progress**: computes and displays completed percentage
@@ -16,6 +17,7 @@ No backend is required: tasks are served from an in‑memory data source in `src
 ---
 
 ### Tech Stack
+
 - **React 19** + **TypeScript 5**
 - **Vite 7** for dev/build
 - **Tailwind CSS 4** for styling
@@ -24,12 +26,14 @@ No backend is required: tasks are served from an in‑memory data source in `src
 ---
 
 ### Prerequisites
+
 - Node.js 18+ (recommended 18 or 20)
 - npm 9+
 
 ---
 
 ### Getting Started
+
 1. Install dependencies:
    ```bash
    npm install
@@ -43,6 +47,7 @@ No backend is required: tasks are served from an in‑memory data source in `src
 ---
 
 ### Available Scripts
+
 - `npm run dev`: start Vite dev server with HMR
 - `npm run build`: type-check and build for production
 - `npm run preview`: preview the production build locally
@@ -51,5 +56,6 @@ No backend is required: tasks are served from an in‑memory data source in `src
 ---
 
 ### Notes
+
 - Filters are currently UI-only; extend `api.ts` or add state to implement real filtering.
 - There is no persistence; refresh resets to the seed data.

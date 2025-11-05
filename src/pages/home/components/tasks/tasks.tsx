@@ -6,21 +6,21 @@ import { Separator } from "@radix-ui/react-separator";
 import { useState, useEffect } from "react";
 
 const filterOptions = [
-  { label: 'All', value: 'All' },
-  { label: 'Today', value: 'Today' },
-  { label: 'Week', value: 'Week' },
-  { label: 'Completed', value: 'Completed' },
+  { label: "All", value: "All" },
+  { label: "Today", value: "Today" },
+  { label: "Week", value: "Week" },
+  { label: "Completed", value: "Completed" },
 ];
 
 function Tasks() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [filterValue, setFilterValue] = useState<string>('All');
+  const [filterValue, setFilterValue] = useState<string>("All");
 
   useEffect(() => {
     getTasks().then(setTasks);
   }, []);
 
-  const onStatusChange = async (id: Task['id'], status: Status) => {
+  const onStatusChange = async (id: Task["id"], status: Status) => {
     const next = await updateTaskStatus(id, status);
     setTasks(next);
   };
@@ -39,7 +39,11 @@ function Tasks() {
       <div className="min-h-0 flex-1 overflow-auto pr-2 py-2">
         <div className="flex flex-col gap-3">
           {tasks.map((task) => (
-            <TaskLine key={task.id} task={task} onStatusChange={(status) => onStatusChange(task.id, status)} />
+            <TaskLine
+              key={task.id}
+              task={task}
+              onStatusChange={(status) => onStatusChange(task.id, status)}
+            />
           ))}
         </div>
       </div>

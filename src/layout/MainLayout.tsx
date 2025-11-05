@@ -1,5 +1,5 @@
 import React from "react";
-import {Sidebar} from "@/widgets/sidebar/ui/Sidebar";
+import { Sidebar } from "@/widgets/sidebar/ui/Sidebar";
 import cn from "classnames";
 import { Plus, ShellIcon } from "lucide-react";
 import { Button } from "@/shared/ui/Button";
@@ -8,18 +8,23 @@ type Tab = {
   label: string;
   active?: boolean;
   onClick?: () => void;
-}
+};
 
 type Props = {
   tabs?: Tab[];
   className?: string;
   children: React.ReactNode;
-}
+};
 
 function MainLayout({ className, children }: Props) {
   return (
     <div className="h-screen lg:pt-6 lg:px-8 max-w-[1600px] mx-auto">
-      <div className={cn('h-full flex flex-col bg-card text-card-foreground lg:rounded-t-xl lg:pb-0 shadow-xs overflow-none', className)}>
+      <div
+        className={cn(
+          "h-full flex flex-col bg-card text-card-foreground lg:rounded-t-xl lg:pb-0 shadow-xs overflow-none",
+          className
+        )}
+      >
         {/* Header */}
         <div className="w-full">
           <div className="mx-4 lg:mx-10 flex items-center justify-between py-6">

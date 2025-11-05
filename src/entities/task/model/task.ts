@@ -10,6 +10,6 @@ type Task = {
   dueDate: string | null;
   category: Category;
   expectedTimeMin?: number;
-}
+};
 
 export type { Task, Status };
