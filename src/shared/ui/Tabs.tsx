@@ -5,14 +5,14 @@ type TabItem = {
   value?: string;
   active?: boolean; // backward compatibility fallback
   onClick?: () => void; // backward compatibility fallback
-}
+};
 
 type Props = {
   items: TabItem[];
   value?: string;
   onChange?: (value: string) => void;
   className?: string;
-}
+};
 
 function Tabs({ items, value, onChange, className }: Props) {
   return (

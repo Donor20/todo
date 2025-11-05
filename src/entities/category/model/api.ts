@@ -4,18 +4,18 @@ export const categoriesDb: Category[] = [
   {
     id: 1,
     title: "Personal",
-    color: "blue"
+    color: "blue",
   },
   {
     id: 2,
     title: "Health",
-    color: "green"
+    color: "green",
   },
   {
     id: 3,
     title: "Work",
-    color: "red"
-  }
+    color: "red",
+  },
 ];
 
 function delay(ms: number) {

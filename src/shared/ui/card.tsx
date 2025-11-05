@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import  cn from "classnames";
+import cn from "classnames";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const cardVariants = cva(
@@ -19,7 +19,11 @@ const cardVariants = cva(
   }
 );
 
-function Card({ className, variant, ...props }: React.ComponentProps<"div"> & VariantProps<typeof cardVariants>) {
+function Card({
+  className,
+  variant,
+  ...props
+}: React.ComponentProps<"div"> & VariantProps<typeof cardVariants>) {
   return (
     <div
       data-slot="card"

@@ -9,7 +9,7 @@ let tasksDb: Task[] = [
     description: "Milk, bread, cheese, vegetables",
     status: "todo",
     dueDate: "2025-10-03",
-    category: categoriesDb[0]
+    category: categoriesDb[0],
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ let tasksDb: Task[] = [
     status: "done",
     dueDate: "2025-10-01",
     category: categoriesDb[1],
-    expectedTimeMin: 45
+    expectedTimeMin: 45,
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ let tasksDb: Task[] = [
     status: "done",
     dueDate: "2025-10-05",
     category: categoriesDb[2],
-    expectedTimeMin: 120
+    expectedTimeMin: 120,
   },
   {
     id: 4,
@@ -35,7 +35,7 @@ let tasksDb: Task[] = [
     description: "",
     status: "done",
     dueDate: null,
-    category: categoriesDb[0]
+    category: categoriesDb[0],
   },
   {
     id: 5,
@@ -43,7 +43,7 @@ let tasksDb: Task[] = [
     description: "Milk, bread, cheese, vegetables",
     status: "todo",
     dueDate: "2025-10-03",
-    category: categoriesDb[0]
+    category: categoriesDb[0],
   },
   {
     id: 6,
@@ -52,7 +52,7 @@ let tasksDb: Task[] = [
     status: "done",
     dueDate: "2025-10-01",
     category: categoriesDb[1],
-    expectedTimeMin: 50
+    expectedTimeMin: 50,
   },
   {
     id: 7,
@@ -61,7 +61,7 @@ let tasksDb: Task[] = [
     status: "done",
     dueDate: "2025-10-05",
     category: categoriesDb[2],
-    expectedTimeMin: 90
+    expectedTimeMin: 90,
   },
   {
     id: 8,
@@ -69,8 +69,8 @@ let tasksDb: Task[] = [
     description: "",
     status: "done",
     dueDate: null,
-    category: categoriesDb[0]
-  }
+    category: categoriesDb[0],
+  },
 ];
 
 function delay(ms: number) {
@@ -83,15 +83,25 @@ export async function getTasks(): Promise<Task[]> {
   return tasksDb;
 }
 
-export async function updateTaskStatus(id: Task["id"], status: Status): Promise<Task[]> {
-  tasksDb = tasksDb.map((task) => (task.id === id ? { ...task, status } : task));
+export async function updateTaskStatus(
+  id: Task["id"],
+  status: Status
+): Promise<Task[]> {
+  tasksDb = tasksDb.map((task) =>
+    task.id === id ? { ...task, status } : task
+  );
   await delay(150);
 
   return tasksDb;
 }
 
-export async function updateTaskCategory(id: Task["id"], category: Category): Promise<Task[]> {
-  tasksDb = tasksDb.map((task) => (task.id === id ? { ...task, category } : task));
+export async function updateTaskCategory(
+  id: Task["id"],
+  category: Category
+): Promise<Task[]> {
+  tasksDb = tasksDb.map((task) =>
+    task.id === id ? { ...task, category } : task
+  );
   await delay(150);
 
   return tasksDb;
