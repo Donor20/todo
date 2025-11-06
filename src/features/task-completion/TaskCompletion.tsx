@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/shared/ui/Card";
 
 function TaskCompletion() {
+  // TODO: calc
   const completedPercent = 80;
 
   return (

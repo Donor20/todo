@@ -1,6 +1,6 @@
 import { categoriesDb } from "@/entities/category/model/api";
-import type { Task, Status } from "./task";
-import type { Category } from "@/entities/category/model/category";
+import type { Task, Status, TaskCategoryCount } from "./types";
+import type { Category } from "@/entities/category/model/types";
 
 let tasksDb: Task[] = [
   {
@@ -9,7 +9,7 @@ let tasksDb: Task[] = [
     description: "Milk, bread, cheese, vegetables",
     status: "todo",
     dueDate: "2025-10-03",
-    category: categoriesDb[0],
+    categoryId: categoriesDb[0].id,
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ let tasksDb: Task[] = [
     description: "Run 5 km and stretching",
     status: "done",
     dueDate: "2025-10-01",
-    category: categoriesDb[1],
+    categoryId: categoriesDb[1].id,
     expectedTimeMin: 45,
   },
   {
@@ -26,7 +26,7 @@ let tasksDb: Task[] = [
     description: "Complete API integration",
     status: "done",
     dueDate: "2025-10-05",
-    category: categoriesDb[2],
+    categoryId: categoriesDb[2].id,
     expectedTimeMin: 120,
   },
   {
@@ -35,7 +35,7 @@ let tasksDb: Task[] = [
     description: "",
     status: "done",
     dueDate: null,
-    category: categoriesDb[0],
+    categoryId: categoriesDb[0].id,
   },
   {
     id: 5,
@@ -43,7 +43,7 @@ let tasksDb: Task[] = [
     description: "Milk, bread, cheese, vegetables",
     status: "todo",
     dueDate: "2025-10-03",
-    category: categoriesDb[0],
+    categoryId: categoriesDb[0].id,
   },
   {
     id: 6,
@@ -51,7 +51,7 @@ let tasksDb: Task[] = [
     description: "Run 5 km and stretching",
     status: "done",
     dueDate: "2025-10-01",
-    category: categoriesDb[1],
+    categoryId: categoriesDb[1].id,
     expectedTimeMin: 50,
   },
   {
@@ -60,7 +60,7 @@ let tasksDb: Task[] = [
     description: "Complete API integration",
     status: "done",
     dueDate: "2025-10-05",
-    category: categoriesDb[2],
+    categoryId: categoriesDb[2].id,
     expectedTimeMin: 90,
   },
   {
@@ -69,7 +69,7 @@ let tasksDb: Task[] = [
     description: "",
     status: "done",
     dueDate: null,
-    category: categoriesDb[0],
+    categoryId: categoriesDb[0].id,
   },
 ];
 
@@ -105,4 +105,17 @@ export async function updateTaskCategory(
   await delay(150);
 
   return tasksDb;
+}
+
+export async function getTaskCategoryCountStat(): Promise<TaskCategoryCount[]> {
+  await delay(200);
+
+  const data: Record<Category["id"], TaskCategoryCount> = {};
+  for (const task of tasksDb) {
+    if (!data[task.categoryId])
+      data[task.categoryId] = { categoryId: task.categoryId, count: 0 };
+    data[task.categoryId].count++;
+  }
+
+  return Object.values(data);
 }

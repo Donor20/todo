@@ -1,37 +1,65 @@
+import { getTaskCategoryCountStat } from "@/entities/task/model/api";
+import type { TaskCategoryCount } from "@/entities/task/model/types";
 import { Card, CardContent, CardHeader } from "@/shared/ui/Card";
+import { useEffect, useMemo, useState } from "react";
+import { PieChart, Pie, Legend } from "recharts";
+import { categoryStore } from "@/entities/category/model/store";
 
+// TODO: add tooltip
 function TaskCategories() {
-  const completedPercent = 80;
+  const [taskCategoryCountStat, setTaskCategoryCountStat] = useState<
+    TaskCategoryCount[]
+  >([]);
+
+  useEffect(() => {
+    getTaskCategoryCountStat().then(setTaskCategoryCountStat);
+  }, []);
+
+  const data = useMemo(() => {
+    return taskCategoryCountStat.reduce(
+      (list, stat) => {
+        const category = categoryStore.getById(stat.categoryId);
+        const colorVar = categoryStore.getColorVarById(stat.categoryId);
+
+        list.push({
+          name: category?.title,
+          value: stat.count,
+          fill: `var(${colorVar})`,
+        });
+
+        return list;
+      },
+      [] as Record<string, unknown>[]
+    );
+  }, [taskCategoryCountStat]);
 
   return (
     <Card variant="secondary">
       <CardHeader>Categories</CardHeader>
       <CardContent>
-        <div className="flex items-center gap-6">
-          <div className="relative size-28">
-            <div className="absolute inset-0 rounded-full bg-primary/80 [clip-path:polygon(50%_50%,50%_0,100%_0,100%_100%)]" />
-            <div className="absolute inset-0 rounded-full bg-emerald-500/80 [clip-path:polygon(50%_50%,50%_0,0_0,0_60%)]" />
-            <div className="absolute inset-0 rounded-full bg-indigo-500/80" />
-          </div>
-          <div className="grid gap-2 text-sm">
-            <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-primary" /> Work
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-indigo-500" /> Personal
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-emerald-500" /> Health
-            </div>
-          </div>
-        </div>
-        <div className="mt-4 rounded-md bg-accent p-3 text-sm">
-          You're{" "}
-          {completedPercent > 0
-            ? `${Math.min(100, completedPercent)}%`
-            : "a bit"}{" "}
-          closer to your goal than yesterday!
-        </div>
+        <PieChart width={272} height={112}>
+          <Pie
+            data={data}
+            cx="56"
+            cy="50%"
+            innerRadius="60%"
+            outerRadius="100%"
+          >
+            <Legend
+              iconSize={8}
+              layout="vertical"
+              verticalAlign="middle"
+              wrapperStyle={{
+                top: "50%",
+                left: "50%",
+                transform: "translate(0, -50%)",
+                fontSize: "14px",
+                lineHeight: "28px",
+              }}
+              iconType="circle"
+            />
+          </Pie>
+        </PieChart>
       </CardContent>
     </Card>
   );

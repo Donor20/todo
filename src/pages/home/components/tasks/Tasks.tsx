@@ -1,5 +1,5 @@
 import { getTasks, updateTaskStatus } from "@/entities/task/model/api";
-import type { Status, Task } from "@/entities/task/model/task";
+import type { Status, Task } from "@/entities/task/model/types";
 import TaskLine from "@/entities/task/ui/TaskLine";
 import Tabs from "@/shared/ui/Tabs";
 import { Separator } from "@radix-ui/react-separator";
