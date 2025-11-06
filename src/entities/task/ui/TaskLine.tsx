@@ -1,11 +1,11 @@
 import { Checkbox } from "@/shared/ui/Checkbox";
 import { Label } from "@/shared/ui/Label";
-import type { Task, Status } from "@/entities/task/model/task";
+import type { Task, Status } from "@/entities/task/model/types";
 import { Card, CardContent } from "@/shared/ui/Card";
 import { Progress } from "@/shared/ui/Progress";
 import { Clock3 } from "lucide-react";
-import { getCategoryColorVar } from "@/entities/category/lib/color";
 import { Badge } from "@/shared/ui/Badge";
+import { categoryStore } from "@/entities/category/model/store";
 
 type Props = {
   task: Task;
@@ -14,7 +14,8 @@ type Props = {
 
 function TaskLine({ task, onStatusChange }: Props) {
   const checked = task.status === "done";
-  const colorVar = getCategoryColorVar(task.category.color);
+  const category = categoryStore.getById(task.categoryId)!;
+  const colorVar = categoryStore.getColorVarById(task.categoryId);
 
   return (
     <Label>
@@ -49,7 +50,7 @@ function TaskLine({ task, onStatusChange }: Props) {
               className="flex items-center gap-4 pt-2"
               style={{ "--primary": `var(${colorVar})` } as React.CSSProperties}
             >
-              <Badge variant="ghost">{task.category.title}</Badge>
+              <Badge variant="ghost">{category.title}</Badge>
               <Progress value={20} className="flex-1" />
             </div>
           </div>
