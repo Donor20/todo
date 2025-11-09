@@ -37,7 +37,7 @@ function TaskCategories() {
     <Card variant="secondary">
       <CardHeader>Categories</CardHeader>
       <CardContent>
-        <PieChart width={272} height={112}>
+        <PieChart width={272} height={110}>
           <Pie
             data={data}
             cx="56"

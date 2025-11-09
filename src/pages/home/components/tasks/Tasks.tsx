@@ -1,8 +1,8 @@
 import { getTasks, updateTaskStatus } from "@/entities/task/model/api";
 import type { Status, Task } from "@/entities/task/model/types";
 import TaskLine from "@/entities/task/ui/TaskLine";
+import { Separator } from "@/shared/ui/Separator";
 import Tabs from "@/shared/ui/Tabs";
-import { Separator } from "@radix-ui/react-separator";
 import { useState, useEffect } from "react";
 
 const filterOptions = [
@@ -29,14 +29,14 @@ function Tasks() {
     <div className="flex flex-col h-full overflow-hidden">
       {/* Filters */}
       <Tabs
-        className="flex items-center gap-2 pb-2"
+        className="flex items-center gap-2 pb-2 px-2"
         items={filterOptions}
         value={filterValue}
         onChange={setFilterValue}
       />
       <Separator />
       {/* Task list */}
-      <div className="min-h-0 flex-1 overflow-auto pr-2 py-2">
+      <div className="min-h-0 flex-1 overflow-auto px-2 pt-2 pb-4">
         <div className="flex flex-col gap-3">
           {tasks.map((task) => (
             <TaskLine

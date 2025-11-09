@@ -10,7 +10,7 @@ const cardVariants = cva(
       variant: {
         default: "shadow-xs",
         secondary: "bg-card-secondary text-card-secondary-foreground shadow-xs",
-        border: "border border-secondary",
+        border: "border-2 border-secondary",
       },
     },
     defaultVariants: {

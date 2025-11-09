@@ -18,7 +18,7 @@ type Props = {
 
 function MainLayout({ className, children }: Props) {
   return (
-    <div className="h-screen lg:pt-6 lg:px-8 max-w-[1600px] mx-auto">
+    <div className="h-screen lg:pt-6 lg:px-8 max-w-[1400px] mx-auto">
       <div
         className={cn(
           "h-full flex flex-col bg-card text-card-foreground lg:rounded-t-xl lg:pb-0 shadow-xs overflow-none",
