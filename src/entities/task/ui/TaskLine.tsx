@@ -2,7 +2,6 @@ import { Checkbox } from "@/shared/ui/Checkbox";
 import { Label } from "@/shared/ui/Label";
 import type { Task, Status } from "@/entities/task/model/types";
 import { Card, CardContent } from "@/shared/ui/Card";
-import { Progress } from "@/shared/ui/Progress";
 import { Clock3 } from "lucide-react";
 import { Badge } from "@/shared/ui/Badge";
 import { categoryStore } from "@/entities/category/model/store";
@@ -46,12 +45,15 @@ function TaskLine({ task, onStatusChange }: Props) {
                 {task.description}
               </p>
             )}
-            <div
-              className="flex items-center gap-4 pt-2"
-              style={{ "--primary": `var(${colorVar})` } as React.CSSProperties}
-            >
-              <Badge variant="ghost">{category.title}</Badge>
-              <Progress value={20} className="flex-1" />
+            <div className="mt-2">
+              <Badge
+                variant="ghost"
+                style={
+                  { "--primary": `var(${colorVar})` } as React.CSSProperties
+                }
+              >
+                #{category.title}
+              </Badge>
             </div>
           </div>
         </CardContent>
